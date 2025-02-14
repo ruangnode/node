@@ -1,11 +1,9 @@
-Save variables to system:
 ```
 echo "export NODENAME=<Your_Nodename_Moniker>" >> $HOME/.bash_profile
 echo "export WALLET=wallet" >> $HOME/.bash_profile
 echo "export CHAIN_ID=seq-mainnet-1" >> $HOME/.bash_profile
 echo "export GO_VERSION=1.21.3" >> $HOME/.bash_profile
 echo "export BINARY_NAME=fuelsequencerd" >> $HOME/.bash_profile
-echo "export SELFCHAIN_SERVICE=/etc/systemd/system/fuelsequencerd.service" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -48,37 +46,37 @@ fuelsequencerd init <Your_Nodename_Moniker> --chain-id seq-mainnet-1
 ## Download configuration
 ```
 cd $HOME
-wget -O $HOME/.seq-mainnet-1/config/genesis.json https://server-1.ruangnode.com/snap-mainnet/selfchain/genesis.json
-wget -O $HOME/.seq-mainnet-1/config/addrbook.json https://server-1.ruangnode.com/snap-mainnet/selfchain/addrbook.json
+wget -O $HOME/.fuelsequencer/config/genesis.json https://server-1.ruangnode.com/snap-mainnet/fuelsequencer/genesis.json
+wget -O $HOME/.fuelsequencer/config/addrbook.json https://server-1.ruangnode.com/snap-mainnet/fuelsequencer/addrbook.json
 ```
 
 ## Disable indexing
 ```
 indexer="null"
-sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.seq-mainnet-1/config/config.toml
+sed -i -e "s/^indexer *=.*/indexer = \"$indexer\"/" $HOME/.fuelsequencer/config/config.toml
 ```
 
 ## Config pruning
 ```
-sed -i 's|pruning = "default"|pruning = "custom"|g' $HOME/.seq-mainnet-1/config/app.toml
-sed -i 's|pruning-keep-recent = "0"|pruning-keep-recent = "100"|g' $HOME/.seq-mainnet-1/config/app.toml
-sed -i 's|pruning-interval = "0"|pruning-interval = "19"|g' $HOME/.seq-mainnet-1/config/app.toml
+sed -i 's|pruning = "default"|pruning = "custom"|g' $HOME/.fuelsequencer/config/app.toml
+sed -i 's|pruning-keep-recent = "0"|pruning-keep-recent = "100"|g' $HOME/.fuelsequencer/config/app.toml
+sed -i 's|pruning-interval = "0"|pruning-interval = "19"|g' $HOME/.fuelsequencer/config/app.toml
 ```
 
 ## Set minimum gas price
 ```
-sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "10fuel"|g' $HOME/.seq-mainnet-1/config/app.toml
+sed -i 's|minimum-gas-prices =.*|minimum-gas-prices = "10fuel"|g' $HOME/.fuelsequencer/config/app.toml
 ```
 
 ## Create service
 ```
 sudo tee /etc/systemd/system/fuelsequencerd.service > /dev/null <<EOF2
 [Unit]
-Description=Selfchain Node
+Description=fuelsequencer Node
 After=network-online.target
 
 [Service]
-User=github
+User=USER
 ExecStart=$(which fuelsequencerd) start
 Restart=on-failure
 RestartSec=10

@@ -19,10 +19,10 @@ fuelsequencerd keys list
 ## Save Wallet Info
 Add wallet and validator address into variables:
 ```
-export SELFCHAIN_WALLET_ADDRESS=$(fuelsequencerd keys show wallet -a)
-export SELFCHAIN_VALOPER_ADDRESS=$(fuelsequencerd keys show wallet --bech val -a)
-echo 'export SELFCHAIN_WALLET_ADDRESS='${SELFCHAIN_WALLET_ADDRESS} >> $HOME/.bash_profile
-echo 'export SELFCHAIN_VALOPER_ADDRESS='${SELFCHAIN_VALOPER_ADDRESS} >> $HOME/.bash_profile
+export FUELSEQUENCER_WALLET_ADDRESS=$(fuelsequencerd keys show wallet -a)
+export FUELSEQUENCER_VALOPER_ADDRESS=$(fuelsequencerd keys show wallet --bech val -a)
+echo 'export FUELSEQUENCER_WALLET_ADDRESS='${FUELSEQUENCER_WALLET_ADDRESS} >> $HOME/.bash_profile
+echo 'export FUELSEQUENCER_VALOPER_ADDRESS='${FUELSEQUENCER_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
 
@@ -30,7 +30,7 @@ source $HOME/.bash_profile
 
 Check your wallet balance:
 ```
-fuelsequencerd query bank balances $SELFCHAIN_WALLET_ADDRESS
+fuelsequencerd query bank balances $FUELSEQUENCER_WALLET_ADDRESS
 ```
 
 To create your validator, run the command below:
@@ -43,17 +43,17 @@ fuelsequencerd tx staking create-validator \
   --commission-rate "0.1" \
   --min-self-delegation "1" \
   --pubkey $(fuelsequencerd tendermint show-validator) \
-  --moniker=YourNodeMoniker \
+  --moniker=<Your_Nodename_Moniker> \
   --chain-id=seq-mainnet-1 \
   --gas-adjustment 1.4 \
   --gas auto \
-  --gas-prices 0.005fuel
+  --gas-prices 10fuel
 ```
 
 ## Staking, Delegation, and Rewards
 Delegate stake:
 ```
-fuelsequencerd tx staking delegate $SELFCHAIN_VALOPER_ADDRESS 1000000fuel --from=wallet --chain-id=seq-mainnet-1 --gas=auto
+fuelsequencerd tx staking delegate $FUELSEQUENCER_VALOPER_ADDRESS 1000000fuel --from=wallet --chain-id=seq-mainnet-1 --gas=auto
 ```
 
 Redelegate stake:
@@ -68,14 +68,14 @@ fuelsequencerd tx distribution withdraw-all-rewards --from=wallet --chain-id=seq
 
 Withdraw rewards with commission:
 ```
-fuelsequencerd tx distribution withdraw-rewards $SELFCHAIN_VALOPER_ADDRESS --from=wallet --commission --chain-id=seq-mainnet-1
+fuelsequencerd tx distribution withdraw-rewards $FUELSEQUENCER_VALOPER_ADDRESS --from=wallet --commission --chain-id=seq-mainnet-1
 ```
 
 ## Validator Management
 Edit validator:
 ```
 fuelsequencerd tx staking edit-validator \
-  --moniker=YourNodeMoniker \
+  --moniker=<Your_Nodename_Moniker> \
   --identity=<your_keybase_id> \
   --website="<your_website>" \
   --details="<your_validator_description>" \

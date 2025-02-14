@@ -3,7 +3,7 @@
 ## Snapshot
 To restore a snapshot, follow the steps below:
 
-```bash
+```
 sudo systemctl stop fuelsequencerd
 cp $HOME/.fuelsequencer/data/priv_validator_state.json $HOME/.fuelsequencer/priv_validator_state.json.backup
 rm -rf $HOME/.fuelsequencer/data
