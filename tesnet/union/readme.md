@@ -49,8 +49,8 @@ uniond init <Your_Nodename_Moniker> --chain-id union-testnet-9
 ## Download configuration
 ```
 cd $HOME
-wget -O $HOME/.union/config/genesis.json https://server-1.ruangnode.com/snap-testnet/union/genesis.json
-wget -O $HOME/.union/config/addrbook.json https://server-1.ruangnode.com/snap-testnet/union/addrbook.json
+wget -O $HOME/.union/config/genesis.json https://server-1.ruangnode.com/testnet/union/genesis.json
+wget -O $HOME/.union/config/addrbook.json https://server-1.ruangnode.com/testnet/union/addrbook.json
 ```
 
 ## Disable indexing
