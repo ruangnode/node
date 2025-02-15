@@ -107,5 +107,25 @@ Unjail validator:
 ```
 uniond tx slashing unjail --from=wallet --chain-id=union-testnet-9 --gas=auto
 ```
+## Node info
+Synchronization info
 
+```
+uniond status 2>&1 | jq .SyncInfo
+```
+## Validator info
+
+```
+uniond status 2>&1 | jq .ValidatorInfo
+```
+## Node info
+
+```
+uniond status 2>&1 | jq .NodeInfo
+```
+##Show node id
+
+```
+uniond tendermint show-node-id
+```
 
