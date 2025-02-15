@@ -43,6 +43,8 @@ mv uniond-linux-amd64 $HOME/go/bin/uniond
 ```
 alias uniond='uniond --home=$HOME/.union/'
 uniond init <Your_Nodename_Moniker> --chain-id union-testnet-9
+uniond config set client keyring-backend test
+uniond config set client node tcp://localhost:26657
 ```
 
 ## Download configuration
