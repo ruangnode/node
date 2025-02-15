@@ -34,9 +34,9 @@ fi
 ## Download and build binaries
 ```
 cd $HOME
-wget https://github.com/unionlabs/union/releases/download/uniond%2Fv0.25.0/uniond.x86_64-linux.tar.gz -O uniond-linux-amd64
-chmod +x uniond-linux-amd64
-mv uniond-linux-amd64 $HOME/go/bin/uniond
+wget https://server-1.ruangnode.com/testnet/union/uniond
+chmod +x uniond
+mv uniond $HOME/go/bin/uniond
 ```
 
 ## Init app
