@@ -65,13 +65,8 @@ Add the following content to the file:
     "min-self-delegation": "1"
 }
 ```
-Assuming your private validator key is in the default location:
-
-```
-export PRIV_KEY=$(jq -r '.priv_key.value' ~/.union/config/priv_validator_key.json)
-export POSSESSION_PROOF=$(uniond prove-possession "$PRIV_KEY")
-```
 Finally, we’re ready to submit the transaction to create the validator:
+
 ```
 uniond union-staking create-union-validator validator.json $POSSESSION_PROOF --from wallet --chain-id union-testnet-9
 ```
