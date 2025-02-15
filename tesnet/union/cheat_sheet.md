@@ -113,19 +113,45 @@ Synchronization info
 ```
 uniond status 2>&1 | jq .SyncInfo
 ```
-## Validator info
+Validator info
 
 ```
 uniond status 2>&1 | jq .ValidatorInfo
 ```
-## Node info
+Node info
 
 ```
 uniond status 2>&1 | jq .NodeInfo
 ```
-##Show node id
+Show node id
 
 ```
 uniond tendermint show-node-id
+```
+## Voting
+
+```
+uniond tx gov vote 1 yes --from $WALLET --chain-id=$UNION_CHAIN_ID
+```
+## Staking, Delegation and Rewards
+Delegate stake
+
+```
+uniond tx staking delegate $UNION_VALOPER_ADDRESS 1000000muno --from=$WALLET --chain-id=$UNION_CHAIN_ID --gas=auto
+```
+Redelegate stake from validator to another validator
+
+```
+uniond tx staking redelegate <srcValidatorAddress> <destValidatorAddress> 1000000muno --from=$WALLET --chain-id=$UNION_CHAIN_ID --gas=auto
+```
+Withdraw all rewards
+
+```
+uniond tx distribution withdraw-all-rewards --from=$WALLET --chain-id=$UNION_CHAIN_ID --gas=auto
+```
+Withdraw rewards with commision
+
+```
+uniond tx distribution withdraw-rewards $UNION_VALOPER_ADDRESS --from=$WALLET --commission --chain-id=$UNION_CHAIN_ID
 ```
 
