@@ -1,5 +1,5 @@
-```
 #Setup Validator Env
+```
 echo "export NODENAME=<Your_Nodename_Moniker>" >> $HOME/.bash_profile
 echo "export WALLET=wallet" >> $HOME/.bash_profile
 echo "export CHAIN_ID=union-testnet-9" >> $HOME/.bash_profile
