@@ -1,4 +1,4 @@
-#Setup Validator Env
+## Setup Validator Env
 ```
 echo "export NODENAME=<Your_Nodename_Moniker>" >> $HOME/.bash_profile
 echo "export WALLET=wallet" >> $HOME/.bash_profile
