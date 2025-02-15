@@ -46,6 +46,11 @@ export POSSESSION_PROOF=$(uniond prove-possession $(jq -r 'priv_key.value' ~/.un
 ```
 Then, create a file named validator.json with the following content:
 ```
+touch validator.json
+```
+Add the following content to the file:
+
+```
 {
     "pubkey": {"@type":"/cosmos.crypto.bn254.PubKey","key":"xxxxxxxxxxxxxxxxxxxxx"},
     "amount": "1000000muno",
@@ -60,9 +65,15 @@ Then, create a file named validator.json with the following content:
     "min-self-delegation": "1"
 }
 ```
+Assuming your private validator key is in the default location:
+
+```
+export PRIV_KEY=$(jq -r '.priv_key.value' ~/.union/config/priv_validator_key.json)
+export POSSESSION_PROOF=$(uniond prove-possession "$PRIV_KEY")
+```
 Finally, we’re ready to submit the transaction to create the validator:
 ```
-uniond union-staking create-union-validator validator.json    --from wallet   --chain-id union-testnet-9
+uniond union-staking create-union-validator validator.json $POSSESSION_PROOF --from wallet --chain-id union-testnet-9
 ```
 ## Staking, Delegation, and Rewards
 Delegate stake:
